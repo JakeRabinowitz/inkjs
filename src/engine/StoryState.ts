@@ -43,6 +43,11 @@ export class StoryState {
     return this.ToJson(indented);
   }
 
+  // Support for serialization via JSON.stringify()
+  public toJSON() {
+    return this.toJson();
+  }
+
   public LoadJson(json: string) {
     let jObject = SimpleJson.TextToDictionary(json);
     this.LoadJsonObj(jObject);
@@ -74,10 +79,10 @@ export class StoryState {
     if (!container.visitsShouldBeCounted) {
       this.story.Error(
         "Read count for target (" +
-          container.name +
-          " - on " +
-          container.debugMetadata +
-          ") unknown. The story may need to be compiled with countAllVisits flag (-c)."
+        container.name +
+        " - on " +
+        container.debugMetadata +
+        ") unknown. The story may need to be compiled with countAllVisits flag (-c)."
       );
       return 0;
     }
@@ -129,10 +134,10 @@ export class StoryState {
     if (!container.turnIndexShouldBeCounted) {
       this.story.Error(
         "TURNS_SINCE() for target (" +
-          container.name +
-          " - on " +
-          container.debugMetadata +
-          ") unknown. The story may need to be compiled with countAllVisits flag (-c)."
+        container.name +
+        " - on " +
+        container.debugMetadata +
+        ") unknown. The story may need to be compiled with countAllVisits flag (-c)."
       );
     }
 
@@ -669,10 +674,10 @@ export class StoryState {
     } else if (parseInt(jSaveVersion) < this.kMinCompatibleLoadVersion) {
       throw new Error(
         "Ink save format isn't compatible with the current version (saw '" +
-          jSaveVersion +
-          "', but minimum is " +
-          this.kMinCompatibleLoadVersion +
-          "), so can't load."
+        jSaveVersion +
+        "', but minimum is " +
+        this.kMinCompatibleLoadVersion +
+        "), so can't load."
       );
     }
 
@@ -1161,10 +1166,10 @@ export class StoryState {
         ) {
           throw new Error(
             "ink arguments when calling EvaluateFunction / ChoosePathStringWithParameters must be" +
-              "number, string, bool or InkList. Argument was " +
-              (nullIfUndefined(args[i]) === null
-                ? "null"
-                : args[i].constructor.name)
+            "number, string, bool or InkList. Argument was " +
+            (nullIfUndefined(args[i]) === null
+              ? "null"
+              : args[i].constructor.name)
           );
         }
 
@@ -1193,7 +1198,7 @@ export class StoryState {
     ) {
       throw new Error(
         "Expected external function evaluation to be complete. Stack trace: " +
-          this.callStack.callStackTrace
+        this.callStack.callStackTrace
       );
     }
 
